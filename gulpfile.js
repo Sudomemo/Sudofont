@@ -12,10 +12,11 @@ function getDate(){
 	if(mm<10) { mm='0'+mm } 
 	return mm+'/'+dd+'/'+yyyy;
 };
-var fontName = 'sudofont';
+var timeStamp = getDate();
+var fontName = 'sudofont'; // set name of your symbol font
 
 gulp.task('symbols', function(){
-  gulp.src("symbol-font-16px.sketch")
+  gulp.src("symbol-font-16px.sketch") // you can also choose "symbol-font-16px.sketch"
   .pipe(sketch({
     export: 'artboards',
     formats: 'svg'
@@ -26,12 +27,12 @@ gulp.task('symbols', function(){
     .pipe(consolidate('lodash', {
 		glyphs: codepoints,
 		fontName: fontName,
-		timeStamp: getDate(),
-		fontPath: '../fonts/',
-		className: 'sf'
+		timeStamp: timeStamp,
+		fontPath: '../fonts/', // set path to font (from your CSS file if relative)
+		className: 'sf' // set class name in your CSS
     }))
     .pipe(rename({ basename:fontName }))
-    .pipe(gulp.dest('dist/css/'));
+    .pipe(gulp.dest('dist/css/')); // set path to export your CSS
   })
-  .pipe(gulp.dest('dist/fonts/'));
+  .pipe(gulp.dest('dist/fonts/')); // set path to export your fonts
 });
