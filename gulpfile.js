@@ -3,16 +3,20 @@ var rename = require("gulp-rename");
 var sketch = require("gulp-sketch");
 var iconfont = require('gulp-iconfont');
 var consolidate = require('gulp-consolidate');
-function getDate(){
+function getTimestamp(){
 	var date = new Date();
-	var dd = date.getDate();
-	var mm = date.getMonth()+1;
-	var yyyy = date.getFullYear();
-	if(dd<10) { dd='0'+dd }
-	if(mm<10) { mm='0'+mm } 
-	return mm+'/'+dd+'/'+yyyy;
+	var minute = date.getMinutes();
+	var hour = date.getHours();
+	var day = date.getDate();
+	var month = date.getMonth()+1;
+	var year = date.getFullYear();
+	if(minute<10) { minute='0'+minute }
+	if(hour<10) { hour='0'+hour }
+	if(day<10) { day='0'+day }
+	if(month<10) { month='0'+month } 
+	return month+'/'+day+'/'+year+', '+hour+':'+minute;
 };
-var timeStamp = getDate();
+var timeStamp = getTimestamp();
 var fontName = 'sudofont'; // set name of your symbol font
 
 gulp.task('symbols', function(){
