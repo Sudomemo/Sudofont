@@ -25,7 +25,11 @@ gulp.task('symbols', function(){
     export: 'artboards',
     formats: 'svg'
   }))
-  .pipe(iconfont({ fontName: fontName }))
+  .pipe(iconfont({ 
+	  fontName: fontName,
+	  fontHeight: 512,
+	  descent: 64
+  }))
   .on('codepoints', function(codepoints) {
     gulp.src('templates/fontawesome-style.css')
     .pipe(consolidate('lodash', {
