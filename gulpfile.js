@@ -1,46 +1,48 @@
-var gulp = require("gulp");
-var rename = require("gulp-rename");
-var sketch = require("gulp-sketch");
-var iconfont = require('gulp-iconfont');
+var gulp =        require('gulp');
+var rename =      require('gulp-rename');
+var sketch =      require('gulp-sketch');
+var iconfont =    require('gulp-iconfont');
+var minifyimg =   require('gulp-imagemin');
 var consolidate = require('gulp-consolidate');
-function getTimestamp(){
-	var date = new Date();
-	var minute = date.getMinutes();
-	var hour = date.getHours();
-	var day = date.getDate();
-	var month = date.getMonth()+1;
-	var year = date.getFullYear();
-	if(minute<10) { minute='0'+minute }
-	if(hour<10) { hour='0'+hour }
-	if(day<10) { day='0'+day }
-	if(month<10) { month='0'+month } 
-	return month+'/'+day+'/'+year+', '+hour+':'+minute;
-};
-var timeStamp = getTimestamp();
-var fontName = 'sudofont'; // set name of your symbol font
 
-gulp.task('symbols', function(){
-  gulp.src("symbol-font-16px.sketch") // you can also choose "symbol-font-16px.sketch"
-  .pipe(sketch({
-    export: 'artboards',
-    formats: 'svg'
-  }))
-  .pipe(iconfont({ 
-	  fontName: fontName,
-	  fontHeight: 512,
-	  descent: 64
-  }))
-  .on('codepoints', function(codepoints) {
-    gulp.src('templates/fontawesome-style.css')
-    .pipe(consolidate('lodash', {
-		glyphs: codepoints,
-		fontName: fontName,
-		timeStamp: timeStamp,
-		fontPath: '../fonts/', // set path to font (from your CSS file if relative)
-		className: 'sf' // set class name in your CSS
-    }))
-    .pipe(rename({ basename:fontName }))
-    .pipe(gulp.dest('dist/css/')); // set path to export your CSS
-  })
-  .pipe(gulp.dest('dist/fonts/')); // set path to export your fonts
+var filepaths = {
+    sketchPath: 'sudofont.sketch',
+    scssTemplatePath: 'templates/sudofont-template.scss',
+    scssPath: 'build/scss/',
+    fontPath: 'build/fonts/',
+    relFontPath: '../fonts/'
+};
+
+// gulp font
+gulp.task('font', function() {
+	// Sketch file goes in
+	gulp.src(filepaths.sketchPath)
+		// Export each sketch artboard to svg
+		.pipe(sketch({
+			export: 'artboards',
+			formats: 'svg'
+		}))
+		// Minify each svg image
+		.pipe(minifyimg())
+		// Build svgs into a font
+		.pipe(iconfont({
+			fontName: 'sudofont',
+			fontHeight: 256, // (this is the Sketch artboard height)
+			descent: 32,
+			formats: ['ttf', 'eot', 'woff', 'woff2'],
+		}))
+		// When the font is done, make the .scss file
+		.on('glyphs', function(glyphs, options) {
+			gulp.src(filepaths.scssTemplatePath)
+				.pipe(consolidate('lodash', {
+					glyphs: glyphs,
+					fontName: 'sudofont',
+					fontPath: filepaths.relFontPath,
+					className: 'sf'
+				}))
+				.pipe(rename({basename:'sudofont'}))
+				.pipe(gulp.dest(filepaths.scssPath))
+		})
+		// Font comes out
+		.pipe(gulp.dest(filepaths.fontPath))
 });
