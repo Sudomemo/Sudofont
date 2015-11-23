@@ -12,6 +12,11 @@ Ever since the Nintendo DS was launched in 2004, Nintendo consoles have had a se
 * Find suitable unicode replacements for each character. Thankfully the Hatena engineers open-sourced a [very helpful table](https://github.com/wakaba/hatena-emoji-data), which provides some suggestions for unicide character replacements.
 * Map the icon font glyphs to the NDS characters, and use the replacement unicode characters for social sharing URLs and Open Graph tags used by external websites.
 
+####Issues
+* Bad icons.
+* Some characters don't render properly on non-Mac devices.
+
+
 --
 
 ####Mapping table
