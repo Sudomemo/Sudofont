@@ -1,160 +1,75 @@
 @mixin sudofont-face(){
-  @font-face {
-    font-family: "sudofont";
-    src: url('../fonts/sudofont.eot');
-    src: url('../fonts/sudofont.eot#iefix') format('embedded-opentype'),
-         url('../fonts/sudofont.ttf') format('truetype'),
-         url('../fonts/sudofont.woff') format('woff'),
-         url('../fonts/sudofont.svg#sudofont') format('svg');
-    font-weight: normal;
-    font-style: normal;
-  }
+	@font-face {
+	  font-family: "sudofont";
+	  src: url('../fonts/sudofont.eot');
+	  src: url('../fonts/sudofont.woff2') format('woff2'),
+		   url('../fonts/sudofont.woff') format('woff'),
+		   url('../fonts/sudofont.ttf') format('truetype');
+	  font-weight: normal;
+	  font-style: normal;
+	}
 }
 
-@mixin sudofont-helpers(){
-  
-  .sf.sf--lg {
-    font-size: 1.3333333333333333em;
-    line-height: 0.75em;
-    vertical-align: -15%;
-  }
-  .sf.sf--2x { font-size: 2em; }
-  .sf.sf--3x { font-size: 3em; }
-  .sf.sf--4x { font-size: 4em; }
-  .sf.sf--5x { font-size: 5em; }
-  .sf.sf--fw { width: 1.2857142857142858em; text-align: center; }
-  
-  .sf.sf--stack {
-    position: relative;
-    display: inline-block;
-    width: 2em;
-    height: 2em;
-    line-height: 2em;
-    vertical-align: middle;
-  }
-  .sf--stack-1x, 
-  .sf--stack-2x { position: absolute; left: 0; width: 100%; text-align: center; }
-  .sf--stack-1x { line-height: inherit; }
-  .sf--stack-2x{ font-size: 2em; }
-  
-}
-
-@mixin sudofont-classes(){
-
-  .sf.sf--button-a:before {
-    content: "\E000"
-  }
-
-  .sf.sf--button-b:before {
-    content: "\E001"
-  }
-
-  .sf.sf--button-x:before {
-    content: "\E002"
-  }
-
-  .sf.sf--button-y:before {
-    content: "\E003"
-  }
-
-  .sf.sf--button-l:before {
-    content: "\E004"
-  }
-
-  .sf.sf--button-r:before {
-    content: "\E005"
-  }
-
-  .sf.sf--dpad:before {
-    content: "\E006"
-  }
-
-  .sf.sf--alarm:before {
-    content: "\E007"
-  }
-
-  .sf.sf--face-happy:before {
-    content: "\E008"
-  }
-
-  .sf.sf--face-angry:before {
-    content: "\E009"
-  }
-
-  .sf.sf--face-sad:before {
-    content: "\E00A"
-  }
-
-  .sf.sf--face-neutral:before {
-    content: "\E00B"
-  }
-
-  .sf.sf--sun:before {
-    content: "\E00C"
-  }
-
-  .sf.sf--cloud:before {
-    content: "\E00D"
-  }
-
-  .sf.sf--umbrella:before {
-    content: "\E00E"
-  }
-
-  .sf.sf--snowman:before {
-    content: "\E00F"
-  }
-
-  .sf.sf--exclamation:before {
-    content: "\E010"
-  }
-
-  .sf.sf--question:before {
-    content: "\E011"
-  }
-
-  .sf.sf--envelope:before {
-    content: "\E012"
-  }
-
-  .sf.sf--phone:before {
-    content: "\E013"
-  }
-
-  .sf.sf--spade:before {
-    content: "\E015"
-  }
-
-  .sf.sf--diamond:before {
-    content: "\E016"
-  }
-
-  .sf.sf--heart:before {
-    content: "\E017"
-  }
-
-  .sf.sf--club:before {
-    content: "\E018"
-  }
-
-  .sf.sf--arrow-right:before {
-    content: "\E019"
-  }
-
-  .sf.sf--arrow-left:before {
-    content: "\E01A"
-  }
-
-  .sf.sf--arrow-up:before {
-    content: "\E01B"
-  }
-
-  .sf.sf--arrow-down:before {
-    content: "\E01C"
-  }
-
-  .sf.sf--cross:before {
-    content: "\E028"
-  }
-  
+@mixin sudofont-icons(){
+	.sf {
+	  display: inline-block;
+	  font: normal normal normal 14px/1 "sudofont";
+	  font-size: 1.125em;
+	  text-rendering: auto;
+	  -webkit-font-smoothing: antialiased;
+	  -moz-osx-font-smoothing: grayscale;
+	  transform: translate(0, 0);
+	}
+	.sf-lg {
+	  font-size: 1.3333333333333333em;
+	  line-height: 0.75em;
+	  vertical-align: -15%;
+	}
+	.sf-2x { font-size: 2em; }
+	.sf-3x { font-size: 3em; }
+	.sf-4x { font-size: 4em; }
+	.sf-5x { font-size: 5em; }
+	.sf-fw { width: 1.2857142857142858em; text-align: center; }
+	.sf-stack {
+	  position: relative;
+	  display: inline-block;
+	  width: 2em;
+	  height: 2em;
+	  line-height: 2em;
+	  vertical-align: middle;
+	}
+	.sf-stack-1x, 
+	.sf-stack-2x { position: absolute; left: 0; width: 100%; text-align: center; }
+	.sf-stack-1x { line-height: inherit; }
+	.sf-stack-2x { font-size: 2em; }
+	.sf-button-a:before { content: "\E000" }
+	.sf-button-b:before { content: "\E001" }
+	.sf-button-x:before { content: "\E002" }
+	.sf-button-y:before { content: "\E003" }
+	.sf-button-l:before { content: "\E004" }
+	.sf-button-r:before { content: "\E005" }
+	.sf-dpad:before { content: "\E006" }
+	.sf-alarm:before { content: "\E007" }
+	.sf-face-happy:before { content: "\E008" }
+	.sf-face-angry:before { content: "\E009" }
+	.sf-face-sad:before { content: "\E00A" }
+	.sf-face-neutral:before { content: "\E00B" }
+	.sf-sun:before { content: "\E00C" }
+	.sf-cloud:before { content: "\E00D" }
+	.sf-umbrella:before { content: "\E00E" }
+	.sf-snowman:before { content: "\E00F" }
+	.sf-exclamation:before { content: "\E010" }
+	.sf-question:before { content: "\E011" }
+	.sf-envelope:before { content: "\E012" }
+	.sf-phone:before { content: "\E013" }
+	.sf-spade:before { content: "\E015" }
+	.sf-diamond:before { content: "\E016" }
+	.sf-heart:before { content: "\E017" }
+	.sf-club:before { content: "\E018" }
+	.sf-arrow-right:before { content: "\E019" }
+	.sf-arrow-left:before { content: "\E01A" }
+	.sf-arrow-up:before { content: "\E01B" }
+	.sf-arrow-down:before { content: "\E01C" }
+	.sf-cross:before { content: "\E028" }
+	
 }
