@@ -1,13 +1,13 @@
 #Sudofont
-An icon font that adds web support for the Nintendo DS' special font characters, and contains interface icons for Sudomemo Theatre. 
+An icon font that adds web support for the Nintendo DS' special font characters.
 
 ####What we needed
-Ever since the Nintendo DS was launched in 2004, Nintendo consoles have had a set of special characters added into the internal system font. On [Sudomemo](www.sudomemo.net), users can set their username through their Nintendo DSi console, with the option of using these special characters. This presents us with two issues:
+Ever since the Nintendo DS was launched in 2004, Nintendo consoles have had a set of special characters added into the internal system font. On [Sudomemo](www.sudomemo.net), users can set their username through their Nintendo DSi console, with the option of using these special characters. This presented two issues:
 
 1. These usernames need to display on the Sudomemo Theatre website; Flipnote Hatena did this by inserting .gif images for the characters into the text, however we found there were some problems with that approach.
 2. Sudomemo content may be shared on social media by users, or via [Slack](https://slack.com/) by staff. Usernames cannot interfere with existing emoji mappings - which is what happened on Slack - and it would also be preferable to use appropriate emoji in lieu of the special chatacters on social media sites.
 
-####Solution 
+####I have a cunning plan, m'lord 
 * Use [Sketch 3](https://www.sketchapp.com/) to make the icons, then import them into [IcoMoon](https://icomoon.io/app/) to build them into a font.
 * Use a [gulp](http://gulpjs.com/) script to generare a custom .scss file from the IcoMoon project JSON.
 * Find suitable unicode replacements for each character. Thankfully, the Hatena engineers open-sourced a [very helpful table](https://github.com/wakaba/hatena-emoji-data), which provides some suggestions for unicide character replacements.
@@ -15,7 +15,6 @@ Ever since the Nintendo DS was launched in 2004, Nintendo consoles have had a se
 
 ####Todo
 * Improve the icon alignment
-* Interface icons for Sudomemo Theatre
 * Take the SVGs and pipe them into the icomoon JSON(?)
 
 --
