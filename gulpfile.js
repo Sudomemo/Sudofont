@@ -29,7 +29,7 @@ gulp.task('font:svg', function() {
     // Export to svg
     .pipe(gulp.dest(filepaths.svgPath))
     .pipe(iconfont({
-      fontName: 'myfont', // required
+      fontName: 'sudofont', // required
       prependUnicode: true, // recommended option
       formats: ['ttf', 'eot', 'woff'], // default, 'woff2' and 'svg' are available
       //timestamp: runTimestamp, // recommended to get consistent builds when watching files
