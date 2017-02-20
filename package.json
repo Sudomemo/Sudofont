@@ -1,23 +1,19 @@
 {
-  "name": "sudofont",
-  "version": "1.0.0",
-  "description": "An icon font that adds web support for the Nintendo DS' special font characters",
-  "main": "gulpfile.js",
+  "name": "Sudofont",
+  "version": "1.9.0",
+  "repository": {
+    "url": "https://github.com/sudomemo/Sudofont.git",
+    "type": "git"
+  },
+  "author": "James Daniel <whale@rakujira.jp>",
+  "license": "MIT",
   "dependencies": {
-    "gulp": "^3.9.0",
-    "gulp-consolidate": "^0.1.2",
-    "gulp-imagemin": "^2.3.0",
+    "gulp": "^3.9.1",
+    "gulp-consolidate": "^0.2.0",
+    "gulp-iconfont": "^8.0.1",
+    "gulp-imagemin": "^3.1.1",
     "gulp-rename": "^1.2.2",
-    "gulp-sketch": "0.0.10",
-    "lodash": "^3.10.1"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "-"
-  ],
-  "author": "James Daniel",
-  "license": "OFL"
+    "gulp-sketch": "^1.0.3",
+    "gulp-svgo": "^1.0.3"
+  }
 }

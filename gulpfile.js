@@ -1,17 +1,18 @@
 var gulp =        require('gulp');
 var rename =      require('gulp-rename');
 var sketch =      require('gulp-sketch');
-var minifyimg =   require('gulp-imagemin');
+var svgo =        require('gulp-svgo');
+var iconfont =    require('gulp-iconfont');
 var consolidate = require('gulp-consolidate');
 var fs = require('fs');
 
 var filepaths = {
-  fontJSON: 'sudofont.json',
-  sketchPath: 'sudofont.sketch',
-  scssTemplatePath: 'templates/template.scss',
-  scssPath: 'build/scss/',
-  svgPath: 'build/svg/',
-  fontPath: 'build/fonts/',
+  fontJSON: 'src/sudofont.json',
+  sketchPath: 'src/sudofont.sketch',
+  scssTemplatePath: 'src/templates/template.scss',
+  scssPath: 'dist/scss/',
+  svgPath: 'dist/svg/',
+  fontPath: 'dist/fonts/',
   relFontPath: '../fonts/'
 };
 
@@ -24,9 +25,20 @@ gulp.task('font:svg', function() {
       formats: 'svg'
     }))
     // Minify each svg image
-    .pipe(minifyimg())
+    .pipe(svgo())
     // Export to svg
     .pipe(gulp.dest(filepaths.svgPath))
+    .pipe(iconfont({
+      fontName: 'myfont', // required
+      prependUnicode: true, // recommended option
+      formats: ['ttf', 'eot', 'woff'], // default, 'woff2' and 'svg' are available
+      //timestamp: runTimestamp, // recommended to get consistent builds when watching files
+    }))
+      .on('glyphs', function(glyphs, options) {
+        // CSS templating, e.g.
+        console.log(glyphs, options);
+      })
+    .pipe(gulp.dest('dist/fonts/'));
 });
 
 gulp.task('font:scss', function() {
@@ -44,4 +56,3 @@ gulp.task('font:scss', function() {
     .pipe(rename({basename:font.metadata.name}))
     .pipe(gulp.dest(filepaths.scssPath))
 });
-
