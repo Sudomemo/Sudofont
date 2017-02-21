@@ -1,0 +1,82 @@
+@font-face {
+  font-family: "sudofont";
+  src: url('../fonts/sudofont.eot');
+  src: url('../fonts/sudofont.eot?#iefix') format('eot'),
+    url('../fonts/sudofont.woff2') format('woff2'),
+    url('../fonts/sudofont.woff') format('woff'),
+    url('../fonts/sudofont.ttf') format('truetype'),
+    url('../fonts/sudofont.svg#sudofont') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.sf {
+  display: inline-block;
+  font: normal normal normal 14px/1 "sudofont";
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.sf--lg {
+  font-size: 1.3333333333333333em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+.sf--2x { font-size: 2em; }
+.sf--3x { font-size: 3em; }
+.sf--4x { font-size: 4em; }
+.sf--5x { font-size: 5em; }
+.sf--fw {
+  width: 1.2857142857142858em;
+  text-align: center;
+}
+
+$sudofont-map: (
+  button-a: "\E000",
+  button-b: "\E001",
+  button-x: "\E002",
+  button-y: "\E003",
+  button-l: "\E004",
+  button-r: "\E005",
+  dpad: "\E006",
+  alarm: "\E007",
+  face-smile: "\E008",
+  face-frown: "\E009",
+  face-sad: "\E00A",
+  face-bored: "\E00B",
+  sun: "\E00C",
+  cloud: "\E00D",
+  umbrella: "\E00E",
+  snowman: "\E00F",
+  block-warning: "\E010",
+  block-question: "\E011",
+  envelope: "\E012",
+  device-phone: "\E013",
+  suit-spades: "\E015",
+  suit-diamonds: "\E016",
+  suit-hearts: "\E017",
+  suit-clubs: "\E018",
+  arrow-right: "\E019",
+  arrow-left: "\E01A",
+  arrow-up: "\E01B",
+  arrow-down: "\E01C",
+  x: "\E028",
+);
+
+@function get-icon($name){
+  @if map-has-key($sudofont-map, $name) {
+    @return map-get($sudofont-map, $name);
+  } @else {
+    @error "sudofont: invalid icon name: `#{$name}`.";
+  }
+}
+
+@mixin sudofont-icons {
+  @each $iconName, $iconContent in $sudofont-map {
+    .sf--#{$iconName}:before {
+      content: $iconContent;
+    }
+  }
+}

@@ -1,48 +1,54 @@
-@mixin <%= name %>-face(){
-  @font-face {
-    font-family: "<%= name %>";
-    src: url('<%= fontPath %><%= name %>.eot');
-    src: url('<%= fontPath %><%= name %>.eot#iefix') format('embedded-opentype'),
-         url('<%= fontPath %><%= name %>.ttf') format('truetype'),
-         url('<%= fontPath %><%= name %>.woff') format('woff'),
-         url('<%= fontPath %><%= name %>.svg#<%= name %>') format('svg');
-    font-weight: normal;
-    font-style: normal;
+@font-face {
+  font-family: "<%= fontName %>";
+  src: url('<%= fontPath %><%= fontName %>.eot');
+  src: url('<%= fontPath %><%= fontName %>.eot?#iefix') format('eot'),
+    url('<%= fontPath %><%= fontName %>.woff2') format('woff2'),
+    url('<%= fontPath %><%= fontName %>.woff') format('woff'),
+    url('<%= fontPath %><%= fontName %>.ttf') format('truetype'),
+    url('<%= fontPath %><%= fontName %>.svg#<%= fontName %>') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.<%= className %> {
+  display: inline-block;
+  font: normal normal normal 14px/1 "<%= fontName %>";
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.<%= className %>--lg {
+  font-size: 1.3333333333333333em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+.<%= className %>--2x { font-size: 2em; }
+.<%= className %>--3x { font-size: 3em; }
+.<%= className %>--4x { font-size: 4em; }
+.<%= className %>--5x { font-size: 5em; }
+.<%= className %>--fw {
+  width: 1.2857142857142858em;
+  text-align: center;
+}
+
+$<%= fontName %>-map: (<% _.each(glyphs, function(glyph) { %>
+  <%= glyph.name %>: "\<%= glyph.codepoint.toString(16).toUpperCase() %>",<% }); %>
+);
+
+@function get-icon($name){
+  @if map-has-key($<%= fontName %>-map, $name) {
+    @return map-get($<%= fontName %>-map, $name);
+  } @else {
+    @error "<%= fontName %>: invalid icon name: `#{$name}`.";
   }
 }
 
-@mixin <%= name %>-helpers(){
-  
-  <%= classSelector %>.<%= prefix + 'lg' %> {
-    font-size: 1.3333333333333333em;
-    line-height: 0.75em;
-    vertical-align: -15%;
+@mixin <%= fontName %>-icons {
+  @each $iconName, $iconContent in $<%= fontName %>-map {
+    .<%= className %>--#{$iconName}:before {
+      content: $iconContent;
+    }
   }
-  <%= classSelector %>.<%= prefix + '2x' %> { font-size: 2em; }
-  <%= classSelector %>.<%= prefix + '3x' %> { font-size: 3em; }
-  <%= classSelector %>.<%= prefix + '4x' %> { font-size: 4em; }
-  <%= classSelector %>.<%= prefix + '5x' %> { font-size: 5em; }
-  <%= classSelector %>.<%= prefix + 'fw' %> { width: 1.2857142857142858em; text-align: center; }
-  
-  <%= classSelector %>.<%= prefix + 'stack' %> {
-    position: relative;
-    display: inline-block;
-    width: 2em;
-    height: 2em;
-    line-height: 2em;
-    vertical-align: middle;
-  }
-  .<%= prefix + 'stack-1x' %>, 
-  .<%= prefix + 'stack-2x' %> { position: absolute; left: 0; width: 100%; text-align: center; }
-  .<%= prefix + 'stack-1x' %> { line-height: inherit; }
-  .<%= prefix + 'stack-2x' %>{ font-size: 2em; }
-  
-}
-
-@mixin <%= name %>-classes(){
-<% _.each(icons, function(icon) { if (icon.code) { %>
-  <%= classSelector %>.<%= prefix + icon.name %>:before {
-    content: "\<%= (icon.code).toString(16).toUpperCase() %>"
-  }
-<% }}); %>  
 }
