@@ -8,7 +8,7 @@
   "author": "James Daniel <whale@rakujira.jp>",
   "license": "MIT",
   "scripts": {
-    "font": "gulp font:svg"
+    "build": "gulp build"
   },
   "dependencies": {
     "gulp-consolidate": "^0.2.0",
@@ -16,7 +16,8 @@
     "gulp-imagemin": "^3.1.1",
     "gulp-rename": "^1.2.2",
     "gulp-sketch": "^1.0.3",
-    "gulp-svgo": "^1.0.3"
+    "gulp-svgo": "^1.0.3",
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
     "gulp": "^3.9.1"
