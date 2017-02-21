@@ -1,71 +1,52 @@
-const gulp =        require("gulp");
-const rename =      require("gulp-rename");
-const sketch =      require("gulp-sketch");
-const svgo =        require("gulp-svgo");
-const iconfont =    require("gulp-iconfont");
-const consolidate = require("gulp-consolidate");
-const fs = require("fs");
+var gulp =        require('gulp');
+var rename =      require('gulp-rename');
+var sketch =      require('gulp-sketch');
+var svgo =        require('gulp-svgo');
+var iconfont =    require('gulp-iconfont');
+var consolidate = require('gulp-consolidate');
+var fs = require('fs');
 
-let paths = {
-  sketch: "src/sudofont.sketch",
-  scssTemplate: "src/templates/template.scss",
-  scssOut: "dist/scss/",
-  svgOut: "dist/svg/",
-  fontOut: "dist/fonts/",
-  fontCSS: "../fonts/"
+var filepaths = {
+  fontJSON: 'src/sudofont.json',
+  sketchPath: 'src/sudofont.sketch',
+  scssTemplatePath: 'src/templates/template.scss',
+  scssPath: 'dist/scss/',
+  svgPath: 'dist/svg/',
+  fontPath: 'dist/fonts/',
+  relFontPath: '../fonts/'
 };
 
-let font = {
-  name: "sudofont",
-  formats: ["ttf", "eot", "woff", "woff2", "svg"],
-  className: "sf",
-};
-
-gulp.task("font:svg", () => {
+gulp.task('font:svg', function() {
   // Sketch file goes in
-  gulp.src(paths.sketch)
+  gulp.src(filepaths.sketchPath)
     // Export each sketch artboard to svg
     .pipe(sketch({
-      export: "artboards",
-      formats: "svg"
+      export: 'artboards',
+      formats: 'svg'
     }))
     // Minify each svg image
     .pipe(svgo())
-
     // Export to svg
-    .pipe(gulp.dest(paths.svgOut))
+    .pipe(gulp.dest(filepaths.svgPath))
     .pipe(iconfont({
-      fontName: font.name,
-      prependUnicode: true,
-      formats: font.formats,
-      fontHeight: 240,
-      descent: 40,
+      fontName: 'sudofont', // required
+      prependUnicode: true, // recommended option
+      formats: ['ttf', 'eot', 'woff'], // default, 'woff2' and 'svg' are available
+      //timestamp: runTimestamp, // recommended to get consistent builds when watching files
     }))
-    .on("glyphs", (glyphs) => {
-      const options = {
-        className: font.className,
-        fontName: font.name,
-        fontPath: paths.fontCSS,
-        glyphs: glyphs.map((glyph) => {
-          return { name: glyph.name, codepoint: glyph.unicode[0].charCodeAt(0) }
-        })
-      };
-
-      gulp.src("src/templates/template.scss")
-        .pipe(consolidate("lodash", options))
-        .pipe(rename({ basename: font.name }))
-        .pipe(gulp.dest("dist/scss/")) // set path to export your CSS
-
-    })
-    .pipe(gulp.dest(paths.fontOut));
+      .on('glyphs', function(glyphs, options) {
+        // CSS templating, e.g.
+        console.log(glyphs, options);
+      })
+    .pipe(gulp.dest('dist/fonts/'));
 });
 
-gulp.task("font:scss", function() {
+gulp.task('font:scss', function() {
   // Read the JSOn from IcoMoon
-  var font = JSON.parse(fs.readFileSync(filepaths.fontJSON, "utf8"));
+  var font = JSON.parse(fs.readFileSync(filepaths.fontJSON, 'utf8'));
   // Compile the template based on the data
   return gulp.src(filepaths.scssTemplatePath)
-    .pipe(consolidate("lodash", {
+    .pipe(consolidate('lodash', {
       fontPath: filepaths.relFontPath,
       name: font.metadata.name,
       icons: font.iconSets[0].selection,
