@@ -1,34 +1,37 @@
 $<%= className %>-font-family: "<%= fontName %>" !default;
+$<%= className %>-font-name: "<%= fontName %>" !default;
 $<%= className %>-font-size-base: 24px !default;
 $<%= className %>-line-height-base: 1 !default;
 $<%= className %>-font-path: "<%= fontPath %>" !default;
+$<%= className %>-icon-sizes: (2, 3, 4, 5) !default;
 
-$<%= fontName %>-map: (<% _.each(glyphs, function(glyph) { %>
-  <%= glyph.name %>: "\<%= glyph.codepoint.toString(16).toUpperCase() %>",<% }); %>
+$<%= className %>-map: (<% _.each(glyphs, function(glyph) { %>
+  <%= glyph.name %>: <%= glyph.codepoint.toString(16) %>,<% }); %>
 );
 
 @font-face {
   font-family: "#{$<%= className %>-font-family}";
-  src: url('#{$<%= className %>-font-path}<%= fontName %>.eot');
-  src: url('#{$<%= className %>-font-path}<%= fontName %>.eot?#iefix') format('eot'),
-    url('#{$<%= className %>-font-path}<%= fontName %>.woff2') format('woff2'),
-    url('#{$<%= className %>-font-path}<%= fontName %>.woff') format('woff'),
-    url('#{$<%= className %>-font-path}<%= fontName %>.ttf') format('truetype'),
-    url('#{$<%= className %>-font-path}<%= fontName %>.svg#<%= fontName %>') format('svg');
+  src: url('#{$<%= className %>-font-path}#{$<%= className %>-font-name}.eot');
+  src: url('#{$<%= className %>-font-path}#{$<%= className %>-font-name}.eot?#iefix') format('eot'),
+    url('#{$<%= className %>-font-path}#{$<%= className %>-font-name}.woff2') format('woff2'),
+    url('#{$<%= className %>-font-path}#{$<%= className %>-font-name}.woff') format('woff'),
+    url('#{$<%= className %>-font-path}#{$<%= className %>-font-name}.ttf') format('truetype'),
+    url('#{$<%= className %>-font-path}#{$<%= className %>-font-name}.svg##{$<%= className %>-font-name}') format('svg');
   font-weight: normal;
   font-style: normal;
   unicode-range: <%= unicodeRange %>;
 }
 
-@function <%= fontName %>-get-icon($name){
-  @if map-has-key($<%= fontName %>-map, $name) {
-    @return map-get($<%= fontName %>-map, $name);
+@function <%= className %>-get-icon($name){
+  @if map-has-key($<%= className %>-map, $name) {
+    $code: map-get($<%= className %>-map, $name);
+    @return #{"\"\\"}#{$code + "\""};
   } @else {
     @error "<%= fontName %>: invalid icon name: `#{$name}`.";
   }
 }
 
-@mixin <%= fontName %>-icon() {
+@mixin <%= className %>-icon() {
   display: inline-block;
   font: normal normal normal #{$<%= className %>-font-size-base}/#{$<%= className %>-line-height-base} "#{$<%= className %>-font-family}";
   font-size: inherit;
@@ -37,9 +40,9 @@ $<%= fontName %>-map: (<% _.each(glyphs, function(glyph) { %>
   -moz-osx-font-smoothing: grayscale;
 }
 
-@mixin <%= fontName %>-classes() {
+@mixin <%= className %>-classes() {
   .<%= className %> {
-    @include <%= fontName %>-icon();
+    @include <%= className %>-icon();
   }
 
   .<%= className %>--lg {
@@ -51,14 +54,16 @@ $<%= fontName %>-map: (<% _.each(glyphs, function(glyph) { %>
     width: 1.2857142857142858em;
     text-align: center;
   }
-  .<%= className %>--2x { font-size: 2em; }
-  .<%= className %>--3x { font-size: 3em; }
-  .<%= className %>--4x { font-size: 4em; }
-  .<%= className %>--5x { font-size: 5em; }
 
-  @each $iconName, $iconContent in $<%= fontName %>-map {
+  @each $size in $<%= className %>-icon-sizes {
+    .<%= className %>--#{$size}x {
+      font-size: #{$size}em;
+    }
+  }
+
+  @each $iconName, $iconContent in $<%= className %>-map {
     .<%= className %>--#{$iconName}:before {
-      content: $iconContent;
+      content: <%= className %>-get-icon($iconName);
     }
   }
 }
