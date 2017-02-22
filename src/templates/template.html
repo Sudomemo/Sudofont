@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= fontName %> test page</title>
+    <link rel="stylesheet" href="./css/<%= fontName %>.css">
+  </head>
+  <body>
+    <ul><% _.each(glyphs, function(glyph) { %>
+      <li>
+        <%= glyph.name %>: <i class="<%= className %> <%= className %>--<%= glyph.name %>"></i>
+      </li><% }); %>
+    </ul>
+  </body>
+</html>

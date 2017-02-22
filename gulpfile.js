@@ -103,7 +103,17 @@ gulp.task("build", () => {
       gulp.src("src/templates/template.scss")
         .pipe(consolidate("lodash", options))
         .pipe(rename({ basename: font.name }))
-        .pipe(gulp.dest("dist/scss/")) // set path to export your CSS
+        .pipe(gulp.dest("dist/scss/"))
+
+      gulp.src("src/templates/template.css")
+        .pipe(consolidate("lodash", options))
+        .pipe(rename({ basename: font.name }))
+        .pipe(gulp.dest("dist/css/"))
+
+      gulp.src("src/templates/template.html")
+        .pipe(consolidate("lodash", options))
+        .pipe(rename({ basename: "test" }))
+        .pipe(gulp.dest("dist"))
 
     })
     .pipe(gulp.dest(paths.fontOut));

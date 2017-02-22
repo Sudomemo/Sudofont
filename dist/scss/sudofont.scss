@@ -3,42 +3,6 @@ $sf-font-size-base: 24px !default;
 $sf-line-height-base: 1 !default;
 $sf-font-path: "../fonts/" !default;
 
-@font-face {
-  font-family: "#{$sf-font-family}";
-  src: url('#{$sf-font-path}sudofont.eot');
-  src: url('#{$sf-font-path}sudofont.eot?#iefix') format('eot'),
-    url('#{$sf-font-path}sudofont.woff2') format('woff2'),
-    url('#{$sf-font-path}sudofont.woff') format('woff'),
-    url('#{$sf-font-path}sudofont.ttf') format('truetype'),
-    url('#{$sf-font-path}sudofont.svg#sudofont') format('svg');
-  font-weight: normal;
-  font-style: normal;
-  unicode-range: U+E000-E013, U+E015-E01C, U+E028;
-}
-
-.sf {
-  display: inline-block;
-  font: normal normal normal #{$sf-font-size-base}/#{$sf-line-height-base} "#{$sf-font-family}";
-  font-size: inherit;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.sf--lg {
-  font-size: 1.3333333333333333em;
-  line-height: 0.75em;
-  vertical-align: -15%;
-}
-.sf--2x { font-size: 2em; }
-.sf--3x { font-size: 3em; }
-.sf--4x { font-size: 4em; }
-.sf--5x { font-size: 5em; }
-.sf--fw {
-  width: 1.2857142857142858em;
-  text-align: center;
-}
-
 $sudofont-map: (
   button-a: "\E000",
   button-b: "\E001",
@@ -71,14 +35,55 @@ $sudofont-map: (
   x: "\E028",
 );
 
-@function get-icon($name){
+@font-face {
+  font-family: "#{$sf-font-family}";
+  src: url('#{$sf-font-path}sudofont.eot');
+  src: url('#{$sf-font-path}sudofont.eot?#iefix') format('eot'),
+    url('#{$sf-font-path}sudofont.woff2') format('woff2'),
+    url('#{$sf-font-path}sudofont.woff') format('woff'),
+    url('#{$sf-font-path}sudofont.ttf') format('truetype'),
+    url('#{$sf-font-path}sudofont.svg#sudofont') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  unicode-range: U+E000-E013, U+E015-E01C, U+E028;
+}
+
+@function sudofont-get-icon($name){
   @if map-has-key($sudofont-map, $name) {
     @return map-get($sudofont-map, $name);
   } @else {
     @error "sudofont: invalid icon name: `#{$name}`.";
   }
 }
-@mixin sudofont-icons {
+
+@mixin sudofont-icon() {
+  display: inline-block;
+  font: normal normal normal #{$sf-font-size-base}/#{$sf-line-height-base} "#{$sf-font-family}";
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin sudofont-classes() {
+  .sf {
+    @include sudofont-icon();
+  }
+
+  .sf--lg {
+    font-size: 1.3333333333333333em;
+    line-height: 0.75em;
+    vertical-align: -15%;
+  }
+  .sf--fw {
+    width: 1.2857142857142858em;
+    text-align: center;
+  }
+  .sf--2x { font-size: 2em; }
+  .sf--3x { font-size: 3em; }
+  .sf--4x { font-size: 4em; }
+  .sf--5x { font-size: 5em; }
+
   @each $iconName, $iconContent in $sudofont-map {
     .sf--#{$iconName}:before {
       content: $iconContent;

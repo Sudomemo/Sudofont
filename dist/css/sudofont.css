@@ -1,0 +1,154 @@
+@font-face {
+  font-family: "sudofont";
+  src: url("../fonts/sudofont.eot");
+  src: url("../fonts/sudofont.eot?#iefix") format("eot"),
+    url("../fonts/sudofont.woff2") format("woff2"),
+    url("../fonts/sudofont.woff") format("woff"),
+    url("../fonts/sudofont.ttf") format("truetype"),
+    url("../fonts/sudofont.svg#sudofont") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  unicode-range: U+E000-E013, U+E015-E01C, U+E028;
+}
+
+.sf {
+  display: inline-block;
+  font: normal normal normal 24px/1 "sudofont";
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.sf--lg {
+  font-size: 1.3333333333333333em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+
+.sf--fw {
+  width: 1.2857142857142858em;
+  text-align: center;
+}
+
+.sf--2x { font-size: 2em; }
+.sf--3x { font-size: 3em; }
+.sf--4x { font-size: 4em; }
+.sf--5x { font-size: 5em; }
+
+
+.sf--button-a:before {
+  content: "\E000";
+}
+
+.sf--button-b:before {
+  content: "\E001";
+}
+
+.sf--button-x:before {
+  content: "\E002";
+}
+
+.sf--button-y:before {
+  content: "\E003";
+}
+
+.sf--button-l:before {
+  content: "\E004";
+}
+
+.sf--button-r:before {
+  content: "\E005";
+}
+
+.sf--dpad:before {
+  content: "\E006";
+}
+
+.sf--alarm:before {
+  content: "\E007";
+}
+
+.sf--face-smile:before {
+  content: "\E008";
+}
+
+.sf--face-frown:before {
+  content: "\E009";
+}
+
+.sf--face-sad:before {
+  content: "\E00A";
+}
+
+.sf--face-bored:before {
+  content: "\E00B";
+}
+
+.sf--sun:before {
+  content: "\E00C";
+}
+
+.sf--cloud:before {
+  content: "\E00D";
+}
+
+.sf--umbrella:before {
+  content: "\E00E";
+}
+
+.sf--snowman:before {
+  content: "\E00F";
+}
+
+.sf--block-warning:before {
+  content: "\E010";
+}
+
+.sf--block-question:before {
+  content: "\E011";
+}
+
+.sf--envelope:before {
+  content: "\E012";
+}
+
+.sf--device-phone:before {
+  content: "\E013";
+}
+
+.sf--suit-spades:before {
+  content: "\E015";
+}
+
+.sf--suit-diamonds:before {
+  content: "\E016";
+}
+
+.sf--suit-hearts:before {
+  content: "\E017";
+}
+
+.sf--suit-clubs:before {
+  content: "\E018";
+}
+
+.sf--arrow-right:before {
+  content: "\E019";
+}
+
+.sf--arrow-left:before {
+  content: "\E01A";
+}
+
+.sf--arrow-up:before {
+  content: "\E01B";
+}
+
+.sf--arrow-down:before {
+  content: "\E01C";
+}
+
+.sf--x:before {
+  content: "\E028";
+}
