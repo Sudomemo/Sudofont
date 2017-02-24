@@ -6,6 +6,16 @@ $sf-font-path: "../fonts/" !default;
 $sf-icon-sizes: (2, 3, 4, 5) !default;
 
 $sf-map: (
+  number-0: 30,
+  number-1: 31,
+  number-2: 32,
+  number-3: 33,
+  number-4: 34,
+  number-5: 35,
+  number-6: 36,
+  number-7: 37,
+  number-8: 38,
+  number-9: 39,
   button-a: e000,
   button-b: e001,
   button-x: e002,
@@ -47,6 +57,8 @@ $sf-map: (
   chevron-right: e113,
   chevron-up: e114,
   chevron-down: e115,
+  play-loop: e116,
+  play-once: e117,
   comment: e120,
   comment-off: e121,
   eye: e122,
@@ -57,8 +69,8 @@ $sf-map: (
   star: e127,
   star-o: e128,
   heart: e129,
-  lock: e12a,
-  spinoff: e12b,
+  tag: e12a,
+  tags: e12b,
   pencil: e12c,
   edit: e12d,
   cog: e12e,
@@ -74,11 +86,27 @@ $sf-map: (
   th-large: e138,
   th-list: e139,
   th-menu: e13a,
-  th-: e13b,
+  th-small: e13b,
   home: e150,
   search: e151,
   news: e152,
   help: e153,
+  channels: e154,
+  globe: e155,
+  user: e156,
+  user-group: e157,
+  user-book: e158,
+  user-card: e159,
+  citizen: e15a,
+  citizen-off: e15b,
+  post: e15c,
+  download: e15d,
+  kaeru: e200,
+  wrench: e201,
+  lock: e202,
+  unlock: e203,
+  spinoff: e204,
+  ds: e205,
 );
 
 @font-face {
@@ -91,7 +119,7 @@ $sf-map: (
     url('#{$sf-font-path}#{$sf-font-name}.svg##{$sf-font-name}') format('svg');
   font-weight: normal;
   font-style: normal;
-  unicode-range: U+E000-E013, U+E015-E01C, U+E028, U+E100-E105, U+E110-E115, U+E120-E13B, U+E150-E153;
+  unicode-range: U+30-39, U+E000-E013, U+E015-E01C, U+E028, U+E100-E105, U+E110-E117, U+E120-E13B, U+E150-E15D, U+E200-E205;
 }
 
 @function sf-get-icon($name){

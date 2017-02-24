@@ -8,7 +8,7 @@
     url("../fonts/sudofont.svg#sudofont") format("svg");
   font-weight: normal;
   font-style: normal;
-  unicode-range: U+E000-E013, U+E015-E01C, U+E028, U+E100-E105, U+E110-E115, U+E120-E13B, U+E150-E153;
+  unicode-range: U+30-39, U+E000-E013, U+E015-E01C, U+E028, U+E100-E105, U+E110-E117, U+E120-E13B, U+E150-E15D, U+E200-E205;
 }
 
 .sf {
@@ -36,6 +36,46 @@
 .sf--4x { font-size: 4em; }
 .sf--5x { font-size: 5em; }
 
+
+.sf--number-0:before {
+  content: "\30";
+}
+
+.sf--number-1:before {
+  content: "\31";
+}
+
+.sf--number-2:before {
+  content: "\32";
+}
+
+.sf--number-3:before {
+  content: "\33";
+}
+
+.sf--number-4:before {
+  content: "\34";
+}
+
+.sf--number-5:before {
+  content: "\35";
+}
+
+.sf--number-6:before {
+  content: "\36";
+}
+
+.sf--number-7:before {
+  content: "\37";
+}
+
+.sf--number-8:before {
+  content: "\38";
+}
+
+.sf--number-9:before {
+  content: "\39";
+}
 
 .sf--button-a:before {
   content: "\E000";
@@ -201,6 +241,14 @@
   content: "\E115";
 }
 
+.sf--play-loop:before {
+  content: "\E116";
+}
+
+.sf--play-once:before {
+  content: "\E117";
+}
+
 .sf--comment:before {
   content: "\E120";
 }
@@ -241,11 +289,11 @@
   content: "\E129";
 }
 
-.sf--lock:before {
+.sf--tag:before {
   content: "\E12A";
 }
 
-.sf--spinoff:before {
+.sf--tags:before {
   content: "\E12B";
 }
 
@@ -309,7 +357,7 @@
   content: "\E13A";
 }
 
-.sf--th-:before {
+.sf--th-small:before {
   content: "\E13B";
 }
 
@@ -327,4 +375,68 @@
 
 .sf--help:before {
   content: "\E153";
+}
+
+.sf--channels:before {
+  content: "\E154";
+}
+
+.sf--globe:before {
+  content: "\E155";
+}
+
+.sf--user:before {
+  content: "\E156";
+}
+
+.sf--user-group:before {
+  content: "\E157";
+}
+
+.sf--user-book:before {
+  content: "\E158";
+}
+
+.sf--user-card:before {
+  content: "\E159";
+}
+
+.sf--citizen:before {
+  content: "\E15A";
+}
+
+.sf--citizen-off:before {
+  content: "\E15B";
+}
+
+.sf--post:before {
+  content: "\E15C";
+}
+
+.sf--download:before {
+  content: "\E15D";
+}
+
+.sf--kaeru:before {
+  content: "\E200";
+}
+
+.sf--wrench:before {
+  content: "\E201";
+}
+
+.sf--lock:before {
+  content: "\E202";
+}
+
+.sf--unlock:before {
+  content: "\E203";
+}
+
+.sf--spinoff:before {
+  content: "\E204";
+}
+
+.sf--ds:before {
+  content: "\E205";
 }

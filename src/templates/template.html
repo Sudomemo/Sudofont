@@ -4,6 +4,12 @@
     <meta charset="utf-8">
     <title><%= fontName %> test page</title>
     <link rel="stylesheet" href="./css/<%= fontName %>.css">
+    <style media="screen">
+      body {
+        font-size: 24px;
+        font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+      }
+    </style>
   </head>
   <body>
     <ul><% _.each(glyphs, function(glyph) { %>
