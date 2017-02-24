@@ -37,6 +37,48 @@ $sf-map: (
   x: e028,
   play: e100,
   pause: e101,
+  volume-off: e102,
+  volume-on: e103,
+  framemode: e104,
+  playmode: e105,
+  expand: e110,
+  close: e111,
+  chevron-left: e112,
+  chevron-right: e113,
+  chevron-up: e114,
+  chevron-down: e115,
+  comment: e120,
+  comment-off: e121,
+  eye: e122,
+  eye-off: e123,
+  delete: e124,
+  delete-off: e125,
+  chat: e126,
+  star: e127,
+  star-o: e128,
+  heart: e129,
+  lock: e12a,
+  spinoff: e12b,
+  pencil: e12c,
+  edit: e12d,
+  cog: e12e,
+  warning: e12f,
+  calendar: e130,
+  music: e131,
+  cancel: e132,
+  flag: e133,
+  note: e134,
+  pin: e135,
+  plus: e136,
+  minus: e137,
+  th-large: e138,
+  th-list: e139,
+  th-menu: e13a,
+  th-: e13b,
+  home: e150,
+  search: e151,
+  news: e152,
+  help: e153,
 );
 
 @font-face {
@@ -49,7 +91,7 @@ $sf-map: (
     url('#{$sf-font-path}#{$sf-font-name}.svg##{$sf-font-name}') format('svg');
   font-weight: normal;
   font-style: normal;
-  unicode-range: U+E000-E013, U+E015-E01C, U+E028, U+E100-E101;
+  unicode-range: U+E000-E013, U+E015-E01C, U+E028, U+E100-E105, U+E110-E115, U+E120-E13B, U+E150-E153;
 }
 
 @function sf-get-icon($name){
