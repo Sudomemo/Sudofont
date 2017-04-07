@@ -1,8 +1,8 @@
-##Sudofont
+## Sudofont
 
 Sudomemo Theatre icon font, with polyfills for the Nintendo DS' special font characters.
 
-###What we needed
+### What we needed
 
 Ever since the launch of the Nintendo DS, Nintendo consoles have had a set of special characters added into the internal system font. On [Sudomemo](www.sudomemo.net), users can set their username through their Nintendo DSi console, with the option of using these special characters.
 
@@ -12,7 +12,7 @@ We created a font that includes glyphs mapped to the unicode codepoint for each 
 
 We also decided to append our own icon-font to this set, so as such Sudofont also serves additional purpose of providing the UI icons for Sudomemo Theatre, killing two birds with one stone.
 
-###Building
+### Building
 
 For only requirement for building Sudofont yourself is [NodeJS](https://nodejs.org), once you have it set up on your system, clone or download this repository, then `cd` into the directory:
 
@@ -24,7 +24,7 @@ For only requirement for building Sudofont yourself is [NodeJS](https://nodejs.o
 
 `npm run build`
 
-###Mapping table
+### Mapping table
 
 | NDS character | NDS hex | Emoji                | Emoji shortcode    | Char | Hex |
 |:--------------|:--------|:---------------------|:-------------------|:-----|:---------|
@@ -58,7 +58,7 @@ For only requirement for building Sudofont yourself is [NodeJS](https://nodejs.o
 | Down arrow    | 0xE01C  | :arrow_down:         | arrow_down         | ⬇   | 0x2B07   |
 | Cross         | 0xE028  |:heavy_multiplication_x:|heavy_multiplication_x| ✕  | 0x2715   |
 
-###Credits
+### Credits
 
 * [Wakaba](https://github.com/wakaba) - For open-sourcing this very helpful [Hatena NDS emoji mapping table](https://github.com/wakaba/hatena-emoji-data/blob/master/tables/hatena-00e000.txt)
 
