@@ -19,7 +19,6 @@
     "lodash": "^4.17.4",
     "recursive-readdir": "^2.1.1",
     "rimraf": "^2.4.3",
-    "temporary": "0.0.8",
     "vinyl": "^2.2.1"
   },
   "devDependencies": {

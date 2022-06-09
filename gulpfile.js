@@ -49,64 +49,75 @@ gulp.task("build", () => {
     JSON.parse(fs.readFileSync("./src/unicode_to_key_mappings.json"))
   );
   // run svgLoader through gulp
-  gulp
-    .pipe(svgLoader(paths.svgIn, unicode_to_key_mappings))
-    // Minify each svg image
-    .pipe(svgo())
+  let vinylFiles = svgLoader(paths.svgIn, unicode_to_key_mappings);
 
-    // Export to svg
-    .pipe(gulp.dest(paths.svgOut))
-    .pipe(
-      iconfont({
-        fontName: font.name,
-        prependUnicode: true,
-        formats: font.formats,
-        fontHeight: 240,
-        descent: 40,
-      })
-    )
-    .on("glyphs", (glyphs) => {
-      glyphs = glyphs
-        .map((glyph) => {
-          let codepoint = glyph.unicode[0].charCodeAt(0);
-          return {
-            name: glyph.name,
-            codepoint: codepoint,
-          };
+  let stream = gulp.src(".");
+
+  for (let vinylFile of vinylFiles) {
+    stream.write(vinylFile);
+  }
+
+  debugger;
+
+  // start gulp stream and pipe vinylFiles
+  return stream
+      // Minify each svg image
+      //.pipe(svgo())
+
+      // Export to svg
+      .pipe(gulp.dest(paths.svgOut))
+      .pipe(
+        iconfont({
+          fontName: font.name,
+          prependUnicode: true,
+          formats: font.formats,
+          fontHeight: 240,
+          descent: 40,
         })
-        .sort((a, b) => {
-          return a.codepoint - b.codepoint;
+      )
+      .on("glyphs", (glyphs) => {
+        glyphs = glyphs
+          .map((glyph) => {
+            let codepoint = glyph.unicode[0].charCodeAt(0);
+            return {
+              name: glyph.name,
+              codepoint: codepoint,
+            };
+          })
+          .sort((a, b) => {
+            return a.codepoint - b.codepoint;
+          });
+
+        let codepoints = glyphs.map((glyph) => {
+          return glyph.codepoint;
         });
 
-      let codepoints = glyphs.map((glyph) => {
-        return glyph.codepoint;
-      });
+        const options = {
+          className: font.className,
+          fontName: font.name,
+          fontPath: paths.fontCSS,
+          unicodeRange: getUnicodeRange(codepoints),
+          glyphs: glyphs,
+        };
 
-      const options = {
-        className: font.className,
-        fontName: font.name,
-        fontPath: paths.fontCSS,
-        unicodeRange: getUnicodeRange(codepoints),
-        glyphs: glyphs,
-      };
+        gulp
+          .src("src/templates/template.scss")
+          .pipe(consolidate("lodash", options))
+          .pipe(rename({ basename: font.name }))
+          .pipe(gulp.dest("dist/scss/"));
 
-      gulp
-        .src("src/templates/template.scss")
-        .pipe(consolidate("lodash", options))
-        .pipe(rename({ basename: font.name }))
-        .pipe(gulp.dest("dist/scss/"));
+        gulp
+          .src("src/templates/template.css")
+          .pipe(consolidate("lodash", options))
+          .pipe(rename({ basename: font.name }))
+          .pipe(gulp.dest("dist/css/"));
 
-      gulp
-        .src("src/templates/template.css")
-        .pipe(consolidate("lodash", options))
-        .pipe(rename({ basename: font.name }))
-        .pipe(gulp.dest("dist/css/"));
-
-      gulp
-        .src("src/templates/template.html")
-        .pipe(consolidate("lodash", options))
-        .pipe(rename({ basename: "test" }))
-        .pipe(gulp.dest("dist"));
-    })
-    .pipe(gulp.dest(paths.fontOut));
+        gulp
+          .src("src/templates/template.html")
+          .pipe(consolidate("lodash", options))
+          .pipe(rename({ basename: "test" }))
+          .pipe(gulp.dest("dist"));
+      })
+      .pipe(gulp.dest(paths.fontOut))
+  
 });
