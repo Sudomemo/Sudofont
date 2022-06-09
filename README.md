@@ -4,7 +4,7 @@ Sudomemo Theatre icon font, with polyfills for the Nintendo DS' special font cha
 
 ### What we needed
 
-Ever since the launch of the Nintendo DS, Nintendo consoles have had a set of special characters added into the internal system font. On [Sudomemo](www.sudomemo.net), users can set their username through their Nintendo DSi console, with the option of using these special characters.
+Ever since the launch of the Nintendo DS, Nintendo consoles have had a set of special characters added into the internal system font. On [Sudomemo](https://www.sudomemo.net), users can set their username through their Nintendo DSi console, with the option of using these special characters.
 
 These usernames need to display on the Sudomemo Theatre website for PC and mobile devices. Flipnote Hatena did this by inserting .gif images for the characters into the text, however we thought that we could find a better approach since it's not 2008 anymore.
 
