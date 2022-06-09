@@ -57,9 +57,7 @@ gulp.task("build", () => {
     stream.write(vinylFile);
   }
 
-  debugger;
-
-  stream
+  return stream
       // Minify each svg image
       // todo: svgo is breaking the build
       //.pipe(svgo())
