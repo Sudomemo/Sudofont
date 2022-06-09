@@ -59,11 +59,10 @@ gulp.task("build", () => {
 
   debugger;
 
-  // start gulp stream and pipe vinylFiles
-  return stream
+  stream
       // Minify each svg image
+      // todo: svgo is breaking the build
       //.pipe(svgo())
-
       // Export to svg
       .pipe(gulp.dest(paths.svgOut))
       .pipe(

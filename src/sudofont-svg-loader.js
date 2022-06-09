@@ -19,7 +19,7 @@ module.exports = function(svgDir, unicode_to_key_mappings) {
             while (used_glyph_names.includes(outputSvgName + "-" + suffix)) {
                 suffix++;
             }
-            outputSvgName = outputSvgName + suffix;
+            outputSvgName = outputSvgName + "-" + suffix;
         }
 
         used_glyph_names.push(outputSvgName);
