@@ -12,13 +12,25 @@
       table {
         border: 2px solid lightgray;
         border-radius: 4px;
+        border-collapse: collapse;
+      }
+      th {
+        padding: 0 10px;
       }
       td {
         font-size: 24px;
       }
+      th,td {
+        border: 2px dotted lightgray;
+        text-align: center;
+      }
+      tr {
+        height: 3em;
+      }
       .use-webfont {
         font-family: "<%= fontName %>";
       }
+
     </style>
   </head>
   <body>
@@ -28,13 +40,15 @@
         <th>Icon Font</th>
         <th>Webfont</th>
         <th>Non-Webfont</th>
+        <th>Inline with text</th>
       </tr>
       <% _.each(glyphs, function(glyph) { %>
         <tr>
           <td><%= glyph.name %></td>
           <td><i class="<%= className %> <%= className %>--<%= glyph.name %>"></i></td>
-          <td class="use-webfont"><%= String.fromCharCode(glyph.codepoint) %></td>
-          <td><%= String.fromCharCode(glyph.codepoint) %></td>
+          <td class="use-webfont"><%= String.fromCodePoint(glyph.codepoint) %></td>
+          <td><%= String.fromCodePoint(glyph.codepoint) %></td>
+          <td class="use-webfont"><%= String.fromCodePoint(glyph.codepoint) %> Hello <%= String.fromCodePoint(glyph.codepoint) %>, world! <%= String.fromCodePoint(glyph.codepoint) %></td>
         </tr>
       <% }); %>
     </table>

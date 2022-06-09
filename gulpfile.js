@@ -77,7 +77,7 @@ gulp.task("build", () => {
       .on("glyphs", (glyphs) => {
         glyphs = glyphs
           .map((glyph) => {
-            let codepoint = glyph.unicode[0].charCodeAt(0);
+            let codepoint = glyph.unicode[0].codePointAt(0);
             return {
               name: glyph.name,
               codepoint: codepoint,
