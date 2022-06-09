@@ -6,16 +6,37 @@
     <link rel="stylesheet" href="./css/<%= fontName %>.css">
     <style media="screen">
       body {
-        font-size: 24px;
+        font-size: 16px;
         font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+      }
+      table {
+        border: 2px solid lightgray;
+        border-radius: 4px;
+      }
+      td {
+        font-size: 24px;
+      }
+      .use-webfont {
+        font-family: "<%= fontName %>";
       }
     </style>
   </head>
   <body>
-    <ul><% _.each(glyphs, function(glyph) { %>
-      <li>
-        <%= glyph.name %>: <i class="<%= className %> <%= className %>--<%= glyph.name %>"></i>
-      </li><% }); %>
-    </ul>
+    <table>
+      <tr>      
+        <th>Glyph Name</th>
+        <th>Icon Font</th>
+        <th>Webfont</th>
+        <th>Non-Webfont</th>
+      </tr>
+      <% _.each(glyphs, function(glyph) { %>
+        <tr>
+          <td><%= glyph.name %></td>
+          <td><i class="<%= className %> <%= className %>--<%= glyph.name %>"></i></td>
+          <td class="use-webfont"><%= String.fromCharCode(glyph.codepoint) %></td>
+          <td><%= String.fromCharCode(glyph.codepoint) %></td>
+        </tr>
+      <% }); %>
+    </table>
   </body>
 </html>
